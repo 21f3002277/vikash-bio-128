@@ -18,10 +18,10 @@
 
         .book {
             margin: 40px;
-            width: 90vw;
-            max-width: 600px;
-            height: 120vh;
-            max-height: 950px;
+            width: 30%;
+            max-width: 40%;
+            height: 90vh;
+            max-height: 750px;
             display: flex;
             position: relative;
             transform-style: preserve-3d;
@@ -61,7 +61,7 @@
         }
 
         .book:hover {
-            transform: translateX(calc(70%));
+            transform: translateX(calc(50%));
         }
 
         .book:hover .cover {
@@ -86,48 +86,50 @@
         }
 
         .profile-photo {
-            width: 100%;
-            max-width: 180px;
+            width: 35%;
             height: auto;
-            border-radius: 10px;
+            border-radius: 3%;
             display: block;
             margin: 30px auto 0;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .ganesha-photo {
-            width: 100%;
-            max-width: 100px;
+            width: 20%;
+            height: auto;
             display: block;
             margin: 0px auto;
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
         }
 
         .sh {
-            font-size: 18px;
+            font-size: 75%;
             font-weight: bold;
             color: #df9a3a;
             text-shadow: 0 0 2px rgba(223, 154, 58, 1);
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 1%;
         }
 
         .details {
+            margin-left: 10%;
+            margin-top: 0px;
             text-align: left;
-            padding: 40px;
+            padding: 4%;
         }
 
         h2 {
             color: #df9a3a;
             border-bottom: 2px solid #df9a3a;
             display: inline-block;
-            padding-bottom: 5px;
-            margin-bottom: 10px;
+            padding-bottom: 1%;
+            margin-bottom: 2%;
+            font-size: 85%;
         }
 
         p {
             color: white;
-            font-size: 16px;
+            font-size: 70%;
             margin: 5px 0;
         }
 
@@ -135,25 +137,10 @@
             color: #df9a3a;
         }
 
-        @media (max-width: 768px) {
-            .book {
-                width: 95vw;
-                height: 95vh;
-            }
-
-            p {
-                font-size: 14px;
-            }
-
-            h2 {
-                font-size: 1.2rem;
-            }
-        }
-
         /* Corner Images */
         .corner-photo {
-            width: 50px;
-            height: 50px;
+            width: 10%;
+            height: auto;
             position: absolute;
         }
 
@@ -184,7 +171,7 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 200px;
+            width: 40%;
             /* Adjust as needed */
             height: auto;
             opacity: 0.4;
@@ -237,168 +224,19 @@
                 transform: translate(-50%, -50%) rotate(360deg);
             }
         }
-    </style>
-    <style>
-        /* Existing styles remain the same until the media queries */
 
-        @media (max-width: 768px) {
+        @media (max-width: 460px) {
             .book {
-                width: 100%;
+                width: 95vw;
                 height: 95vh;
-                margin: 20px;
-                max-height: 90vh;
             }
 
-            .profile-photo {
-                max-width: 140px;
-                margin: 20px auto 0;
-            }
-
-            .ganesha-photo {
-                max-width: 80px;
-            }
-
-            .details {
-                padding: 20px;
-            }
-
-            h2 {
-                font-size: 1.1rem;
-                padding-bottom: 3px;
+            .h2 {
+                font-size: 8%;
             }
 
             p {
                 font-size: 14px;
-                margin: 4px 0;
-            }
-
-            .sh {
-                font-size: 16px;
-            }
-
-            .corner-photo {
-                width: 40px;
-                height: 40px;
-            }
-
-            .watermark {
-                width: 150px;
-                bottom: 20px;
-                right: 20px;
-            }
-
-            .w3 {
-                width: 50px;
-                height: 50px;
-                right: 20px;
-                bottom: 20px;
-            }
-
-            .bg-img {
-                margin-top: 40px;
-                margin-left: -30px;
-                width: 500px;
-                height: 550px;
-            }
-
-            .overlay-img {
-                width: 250px;
-                height: 250px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .book {
-                width: 50vw;
-                height: 100vh;
-                margin: 10px;
-                max-height: 100vh;
-            }
-
-            .profile-photo {
-                max-width: 120px;
-                margin: 15px auto 0;
-            }
-
-            .ganesha-photo {
-                max-width: 60px;
-            }
-
-            .details {
-                padding: 15px;
-            }
-
-            h2 {
-                font-size: 1rem;
-            }
-
-            p {
-                font-size: 12px;
-                margin: 3px 0;
-            }
-
-            .sh {
-                font-size: 14px;
-                margin-bottom: 5px;
-            }
-
-            .corner-photo {
-                width: 30px;
-                height: 30px;
-                top: 10px;
-                left: 10px;
-            }
-
-            .watermark {
-                width: 120px;
-                bottom: 15px;
-                right: 15px;
-            }
-
-            .w3 {
-                width: 40px;
-                height: 40px;
-            }
-
-            .bg-img {
-                margin-top: 30px;
-                margin-left: -20px;
-                width: 400px;
-                height: 450px;
-            }
-
-            .overlay-img {
-                width: 200px;
-                height: 200px;
-            }
-
-            /* Adjust hover effect for mobile */
-            .book:hover {
-                transform: translateX(0);
-            }
-
-            .book:hover .cover {
-                transform: rotateY(0);
-            }
-        }
-
-        @media (max-width: 360px) {
-            .details {
-                padding: 10px;
-            }
-
-            p {
-                font-size: 11px;
-            }
-
-            .bg-img {
-                width: 350px;
-                height: 400px;
-            }
-
-            .overlay-img {
-                width: 180px;
-                height: 180px;
             }
         }
     </style>
