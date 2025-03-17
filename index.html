@@ -210,7 +210,7 @@
 
         .bg-img {
             display: block;
-            margin-top: 40px;
+            margin-top: 60px;
             margin-left: -50px;
             display: block;
             width: 700px;
@@ -235,6 +235,170 @@
 
             to {
                 transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+    </style>
+    <style>
+        /* Existing styles remain the same until the media queries */
+
+        @media (max-width: 768px) {
+            .book {
+                width: 95vw;
+                height: 95vh;
+                margin: 20px;
+                max-height: 90vh;
+            }
+
+            .profile-photo {
+                max-width: 140px;
+                margin: 20px auto 0;
+            }
+
+            .ganesha-photo {
+                max-width: 80px;
+            }
+
+            .details {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 1.1rem;
+                padding-bottom: 3px;
+            }
+
+            p {
+                font-size: 14px;
+                margin: 4px 0;
+            }
+
+            .sh {
+                font-size: 16px;
+            }
+
+            .corner-photo {
+                width: 40px;
+                height: 40px;
+            }
+
+            .watermark {
+                width: 150px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .w3 {
+                width: 50px;
+                height: 50px;
+                right: 20px;
+                bottom: 20px;
+            }
+
+            .bg-img {
+                margin-top: 40px;
+                margin-left: -30px;
+                width: 500px;
+                height: 550px;
+            }
+
+            .overlay-img {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .book {
+                width: 100vw;
+                height: 100vh;
+                margin: 10px;
+                max-height: 100vh;
+            }
+
+            .profile-photo {
+                max-width: 120px;
+                margin: 15px auto 0;
+            }
+
+            .ganesha-photo {
+                max-width: 60px;
+            }
+
+            .details {
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 1rem;
+            }
+
+            p {
+                font-size: 12px;
+                margin: 3px 0;
+            }
+
+            .sh {
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+
+            .corner-photo {
+                width: 30px;
+                height: 30px;
+                top: 10px;
+                left: 10px;
+            }
+
+            .watermark {
+                width: 120px;
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .w3 {
+                width: 40px;
+                height: 40px;
+            }
+
+            .bg-img {
+                margin-top: 30px;
+                margin-left: -20px;
+                width: 400px;
+                height: 450px;
+            }
+
+            .overlay-img {
+                width: 200px;
+                height: 200px;
+            }
+
+            /* Adjust hover effect for mobile */
+            .book:hover {
+                transform: translateX(0);
+            }
+
+            .book:hover .cover {
+                transform: rotateY(0);
+            }
+        }
+
+        @media (max-width: 360px) {
+            .details {
+                padding: 10px;
+            }
+
+            p {
+                font-size: 11px;
+            }
+
+            .bg-img {
+                width: 350px;
+                height: 400px;
+            }
+
+            .overlay-img {
+                width: 180px;
+                height: 180px;
             }
         }
     </style>
