@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Book with Opening Effect</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            background-color: rgb(2, 93, 75);
+            margin: 0;
+        }
+
+        .book {
+            margin: 40px;
+            width: 90vw;
+            max-width: 600px;
+            height: 120vh;
+            max-height: 950px;
+            display: flex;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            border-radius: 10px;
+        }
+
+        .cover {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 2s ease-in-out;
+            z-index: 2;
+            transform-origin: left;
+            cursor: pointer;
+        }
+
+        .cover-front,
+        .cover-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .cover-front {
+            background-color: #280101;
+            transform: rotateY(0deg);
+        }
+
+        .cover-back {
+            background: linear-gradient(to right, #280101 90%, #150000);
+            transform: rotateY(-180deg);
+        }
+
+        .book:hover {
+            transform: translateX(calc(50%));
+        }
+
+        .book:hover .cover {
+            transform: rotateY(-180deg);
+        }
+
+        .pages {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #280101;
+            border-radius: 10px;
+            z-index: 1;
+            box-sizing: border-box;
+        }
+
+        .right-page {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(to left, #280101 90%, #150000);
+            border-radius: 10px;
+        }
+
+        .profile-photo {
+            width: 100%;
+            max-width: 180px;
+            height: auto;
+            border-radius: 10px;
+            display: block;
+            margin: 30px auto 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .ganesha-photo {
+            width: 100%;
+            max-width: 100px;
+            display: block;
+            margin: 0px auto;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .sh {
+            font-size: 18px;
+            font-weight: bold;
+            color: #df9a3a;
+            text-shadow: 0 0 2px rgba(223, 154, 58, 1);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .details {
+            text-align: left;
+            padding: 40px;
+        }
+
+        h2 {
+            color: #df9a3a;
+            border-bottom: 2px solid #df9a3a;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: white;
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        strong {
+            color: #df9a3a;
+        }
+
+        @media (max-width: 768px) {
+            .book {
+                width: 95vw;
+                height: 95vh;
+            }
+
+            p {
+                font-size: 14px;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Corner Images */
+        .corner-photo {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+        }
+
+        .corner-top-left {
+            top: 15px;
+            left: 15px;
+            rotate: 270deg;
+        }
+
+        .corner-top-right {
+            top: 15px;
+            right: 15px;
+        }
+
+        .corner-bottom-left {
+            bottom: 15px;
+            left: 15px;
+            rotate: -180deg;
+        }
+
+        .corner-bottom-right {
+            bottom: 15px;
+            right: 15px;
+            rotate: 90deg;
+        }
+
+        .watermark {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 200px;
+            /* Adjust as needed */
+            height: auto;
+            opacity: 0.4;
+            /* Adjust transparency */
+            z-index: 999;
+            pointer-events: none;
+            /* Prevent interaction */
+        }
+
+
+
+        .w3 {
+            width: 70px;
+            height: 70px;
+            right: 500px;
+            bottom: 50px;
+        }
+
+        .designs {
+            position: relative;
+            display: inline-block;
+        }
+
+        .bg-img {
+            display: block;
+            margin-top: 40px;
+            margin-left: -50px;
+            display: block;
+            width: 700px;
+            height: 750px;
+            /* Adjust based on need */
+        }
+
+        .overlay-img {
+            position: absolute;
+            top: 50%;
+            left: 47%;
+            width: 300px;
+            height: 300px;
+            transform: translate(-50%, -50%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="book">
+        <!-- Cover with back face as left page -->
+        <div class="cover">
+            <div class="cover-front">
+                <div class="designs">
+                    <img src="static/B_5.png" alt="cover border" class="bg-img">
+                    <img src="static/B_7.png" alt="cover border" class="overlay-img">
+                </div>
+
+
+            </div>
+            <div class="cover-back">
+                <img src="static/B_1.jpg" class="corner-photo corner-top-left">
+                <img src="static/B_1.jpg" class="corner-photo corner-top-right">
+                <img src="static/B_1.jpg" class="corner-photo corner-bottom-left">
+                <img src="static/B_1.jpg" class="corner-photo corner-bottom-right">
+                <img src="static/p_2.jpg" alt="Profile Photo" class="profile-photo">
+                <div class="details">
+                    <h2>Personal Details</h2>
+                    <p><strong>Name:</strong> Vikash Prasad</p>
+                    <p><strong>Date of Birth:</strong> 22nd March 2000</p>
+                    <p><strong>Time of Birth:</strong> -</p>
+                    <p><strong>Place of Birth:</strong> Ranchi, Jharkhand</p>
+                    <p><strong>Religion:</strong> Hindu</p>
+                    <p><strong>Caste:</strong> Teli</p>
+                    <p><strong>Gotra:</strong> Kashyap</p>
+                    <p><strong>Rashi:</strong> Mesha (Aries)</p>
+                    <p><strong>Nakshatra:</strong> -</p>
+                    <p><strong>Manglik:</strong> No</p>
+                    <p><strong>Height:</strong> 6 Feet</p>
+                    <p><strong>Weight:</strong> 85 kg</p>
+                    <p><strong>Complexion:</strong> Fair</p>
+                    <p><strong>Qualification:</strong> BS in Data Science and Applications</p>
+                    <p><strong>Occupation:</strong> Businessman</p>
+                </div>
+                <img src="static/B_3.png" class="watermark w2" alt="Watermark">
+                <img src="static/B_4.png" class="watermark w3" alt="Watermark">
+            </div>
+        </div>
+
+        <!-- Right page content -->
+        <div class="pages">
+            <div class="right-page">
+                <img src="static/B_1.jpg" class="corner-photo corner-top-left">
+                <img src="static/B_1.jpg" class="corner-photo corner-top-right">
+                <img src="static/B_1.jpg" class="corner-photo corner-bottom-left">
+                <img src="static/B_1.jpg" class="corner-photo corner-bottom-right">
+                <img src="static/G_2.png" alt="Ganesha Photo" class="ganesha-photo">
+                <div class="sh">ॐ गणेशाय नम:</div>
+                <div class="details">
+                    <h2>Family Details</h2>
+                    <p><strong>Father's Name: </strong> Surya Narayan Prasad</p>
+                    <p><strong>Father's Occupation: </strong> Businessman</p>
+                    <p><strong>Mother's Name: </strong> Munni Devi</p>
+                    <p><strong>Mother's Occupation: </strong> House Wife</p>
+                </div>
+                <br>
+                <div class="details">
+                    <h2>Contact Details</h2>
+                    <p><strong>Contact Person: </strong> Munni Devi</p>
+                    <p><strong>Contact Number: </strong> 6205872523</p>
+                    <p><strong>Residential Address: </strong> Main Road Silli, Ranchi, Jharkhand</p>
+                </div>
+                <img src="static/B_3.png" class="watermark" alt="Watermark">
+                <img src="static/B_4.png" class="watermark w3" alt="Watermark">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
