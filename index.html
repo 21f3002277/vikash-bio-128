@@ -20,10 +20,6 @@
             margin: 40px;
             width: 30%;
             max-width: 40%;
-            height: 90vh;
-            max-height: 750px;
-            display: flex;
-            position: relative;
             transform-style: preserve-3d;
             transition: transform 0.5s;
             border-radius: 10px;
@@ -76,9 +72,13 @@
             border-radius: 10px;
             z-index: 1;
             box-sizing: border-box;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            transition: transform 2s ease-in-out;
         }
 
         .right-page {
+            position: absolute;
             height: 100%;
             width: 100%;
             background: linear-gradient(to left, #280101 90%, #150000);
@@ -227,18 +227,72 @@
             }
         }
 
-        @media (max-width: 460px) {
+        @media (min-width: 400px) and (max-width: 900px) {
             .book {
-                height: 600px;
+                height: 385px;
             }
 
-            .h2 {
-                font-size: 8%;
+            .cover-front,
+            .cover-back,
+            .right-page,
+            .cover,
+            .pages {
+                height: 385px;
+            }
+
+            .sh {
+                font-size: 55%;
+            }
+
+            h2 {
+                font-size: 50%;
             }
 
             p {
-                font-size: 14px;
+                font-size: 40%;
             }
+
+            .profile-photo {
+                width: 25%;
+            }
+        }
+
+
+        @media (min-width: 901px) and (max-width: 1200px) {
+            .book {
+                height: 510px;
+            }
+
+            .cover-front,
+            .cover-back,
+            .right-page,
+            .cover,
+            .pages {
+                height: 510px;
+            }
+
+            .sh {
+                font-size: 65%;
+            }
+
+            h2 {
+                font-size: 60%;
+            }
+
+            p {
+                font-size: 55%;
+            }
+
+            .profile-photo {
+                width: 30%;
+            }
+        }
+
+        @media (min-width: 1201px) and (max-width: 1600px) {
+            .book {
+                height: 660px;
+            }
+
         }
     </style>
 </head>
@@ -279,9 +333,9 @@
                     <p><strong>Qualification:</strong> BS in Data Science and Applications</p>
                     <p><strong>Occupation:</strong> Businessman</p>
                 </div>
-                <img src="static/B_3.png" class="watermark" alt="Watermark">
-                <img src="static/B_4.png" class="watermark w3" alt="Watermark">
-                <img src="static/B_4.png" class="watermark w4" alt="Watermark">
+                <img src="static/B_3.png" alt="watermark" class="watermark">
+                <img src="static/B_4.png" alt="watermark" class="watermark w3">
+                <img src="static/B_4.png" alt="watermark" class="watermark w4">
             </div>
         </div>
 
@@ -308,9 +362,10 @@
                     <p><strong>Contact Number: </strong> 6205872523</p>
                     <p><strong>Residential Address: </strong> Main Road Silli, Ranchi, Jharkhand</p>
                 </div>
-                <img src="static/B_3.png" class="watermark" alt="Watermark">
-                <img src="static/B_4.png" class="watermark w3" alt="Watermark">
-                <img src="static/B_4.png" class="watermark w4" alt="Watermark">
+                <img src="static/B_3.png" alt="watermark" class="watermark">
+                <img src="static/B_4.png" alt="watermark" class="watermark w3">
+                <img src="static/B_4.png" alt="watermark" class="watermark w4">
+
             </div>
         </div>
     </div>
