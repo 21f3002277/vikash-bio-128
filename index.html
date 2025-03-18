@@ -222,6 +222,15 @@
             animation: rotate 20s linear infinite;
         }
 
+        .drive-icon {
+            position: fixed;
+            top: 25%;
+            right: 10%;
+            cursor: pointer;
+            color: white;
+            transform: translateY(-50%);
+        }
+
         @keyframes rotate {
             from {
                 transform: translate(-50%, -50%) rotate(0deg);
@@ -359,7 +368,7 @@
                 <img src="static/B_1.jpg" class="corner-photo corner-bottom-left">
                 <img src="static/B_1.jpg" class="corner-photo corner-bottom-right">
                 <img src="static/p_2.jpg" alt="Profile Photo" class="profile-photo">
-                <i onclick="openDriveFolder()" style="color: white;">📂 Photos</i>
+                <i onclick="openDriveFolder()" class="drive-icon" style="color: white;">📂 Photos</i>
                 <div class="details">
                     <h2>Personal Details</h2>
                     <p><strong>Name:</strong> Vikash Prasad</p>
