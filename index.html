@@ -233,12 +233,18 @@
 
         #a_mess {
             display: none;
-            color: red;
+            color: white;
             text-align: center;
             font-size: 18px;
             padding: 10px;
             position: fixed;
             bottom: 0;
+            animation: blink 1s infinite alternate;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
         }
 
         @keyframes rotate {
