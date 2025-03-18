@@ -10,18 +10,6 @@
             window.open("https://drive.google.com/drive/folders/1Wba7IwgDE-T2MgQF4nG6-QuFpkmITcpV?usp=sharing", "_blank");
         }
     </script>
-    <script>
-        function detectMobile() {
-            let userAgent = navigator.userAgent.toLowerCase();
-            let isMobile = /android|iphone|ipad|ipod/.test(userAgent);
-
-            if (isMobile && window.innerWidth < 1024) {
-                document.body.innerHTML = "<h2 style='color:white; font-size: 20px; text-align:center;'>Please switch to Desktop Site mode for a better experience.</h2>";
-            }
-        }
-
-        window.onload = detectMobile;
-    </script>
     <style>
         body {
             display: flex;
@@ -243,6 +231,14 @@
             transform: translateY(-50%);
         }
 
+        #a_mess {
+            display: none;
+            color: red;
+            text-align: center;
+            font-size: 18px;
+            padding: 10px;
+        }
+
         @keyframes rotate {
             from {
                 transform: translate(-50%, -50%) rotate(0deg);
@@ -444,6 +440,21 @@
             </div>
         </div>
     </div>
+    <div id="a_mess">Please switch to Desktop Site mode for a better experience.</div>
+
+    <script>
+        function detectMobile() {
+            let userAgent = navigator.userAgent.toLowerCase();
+            let isMobile = /android|iphone|ipad|ipod/.test(userAgent);
+
+            if (isMobile && window.innerWidth < 1024) {
+                document.getElementById("a_mess").style.display = "block";
+            }
+        }
+
+        window.onload = detectMobile;
+        window.onresize = detectMobile;
+    </script>
 </body>
 
 </html>
