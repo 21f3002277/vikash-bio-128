@@ -10,6 +10,18 @@
             window.open("https://drive.google.com/drive/folders/1Wba7IwgDE-T2MgQF4nG6-QuFpkmITcpV?usp=sharing", "_blank");
         }
     </script>
+    <script>
+        function detectMobile() {
+            let userAgent = navigator.userAgent.toLowerCase();
+            let isMobile = /android|iphone|ipad|ipod/.test(userAgent);
+
+            if (isMobile && window.innerWidth < 1024) {
+                document.body.innerHTML = "<h2 style='color:red; text-align:center;'>Please switch to Desktop Site mode for a better experience.</h2>";
+            }
+        }
+
+        window.onload = detectMobile;
+    </script>
     <style>
         body {
             display: flex;
