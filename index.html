@@ -440,28 +440,28 @@
         <button onclick="changeLanguage('english')" style="margin-right: 30px;">English</button>
     </div>
     <script>
-        function changeLanguage(lang) {
-            let english = document.querySelectorAll("#English");
-            let hindi = document.querySelectorAll("#Hindi");
+        function detectMobile() {
+            let userAgent = navigator.userAgent.toLowerCase();
+            let isMobile = /android|iphone|ipad|ipod/.test(userAgent);
+            let selectedLang = localStorage.getItem("selectedLang") || "hindi";
 
-            if (lang === "hindi") {
-                english.forEach((element) => {
-                    element.style.display = "none";
-                });
-
-                hindi.forEach((element) => {
-                    element.style.display = "block";
-                });
-            } else {
-                english.forEach((element) => {
-                    element.style.display = "block";
-                });
-
-                hindi.forEach((element) => {
-                    element.style.display = "none";
-                });
-            }
+            // Show message only on mobile and ensure the correct language is applied
+            document.querySelectorAll(".a_mess").forEach(msg => {
+                if (isMobile && window.innerWidth < 1024 && msg.getAttribute("data-lang") === selectedLang) {
+                    msg.style.display = "block";
+                } else {
+                    msg.style.display = "none";
+                }
+            });
         }
+
+        function changeLanguage(lang) {
+            localStorage.setItem("selectedLang", lang);
+            detectMobile(); // Re-run detection to apply the correct message
+        }
+
+        window.onload = detectMobile;
+        window.onresize = detectMobile;
     </script>
 
 
@@ -580,30 +580,7 @@
         <div class="a_mess" data-lang="hindi">बेहतर अनुभव के लिए कृपया डेस्कटॉप साइट मोड पर स्विच करें।</div>
     </div>
 
-    <script>
-        function detectMobile() {
-            let userAgent = navigator.userAgent.toLowerCase();
-            let isMobile = /android|iphone|ipad|ipod/.test(userAgent);
-            let selectedLang = localStorage.getItem("selectedLang") || "hindi";
-
-            // Show message only on mobile and ensure the correct language is applied
-            document.querySelectorAll(".a_mess").forEach(msg => {
-                if (isMobile && window.innerWidth < 1024 && msg.getAttribute("data-lang") === selectedLang) {
-                    msg.style.display = "block";
-                } else {
-                    msg.style.display = "none";
-                }
-            });
-        }
-
-        function changeLanguage(lang) {
-            localStorage.setItem("selectedLang", lang);
-            detectMobile(); // Re-run detection to apply the correct message
-        }
-
-        window.onload = detectMobile;
-        window.onresize = detectMobile;
-    </script>
+    
 </body>
 <footer>
     <div class="footer_style" style="text-align: center; color: white;">
