@@ -450,6 +450,8 @@
         }
 
         function changeLanguage(lang) {
+            localStorage.setItem("selectedLang", lang);
+            
             // Toggle language content
             document.querySelectorAll('.english, .hindi').forEach(element => {
                 element.style.display = 'none';
