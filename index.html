@@ -575,16 +575,25 @@
         </div>
     </div>
     <br>
-    <div id="a_mess">Please switch to Desktop Site mode for a better experience.</div>
+    <div class="a_mess" data-lang="english">Please switch to Desktop Site mode for a better experience.</div>
+    <div class="a_mess" data-lang="hindi" style="display: none;">बेहतर अनुभव के लिए कृपया डेस्कटॉप साइट मोड पर स्विच करें।</div>
 
     <script>
         function detectMobile() {
             let userAgent = navigator.userAgent.toLowerCase();
             let isMobile = /android|iphone|ipad|ipod/.test(userAgent);
+            let messages = document.querySelectorAll(".a_mess");
 
-            if (isMobile && window.innerWidth < 1024) {
-                document.getElementById("a_mess").style.display = "block";
-            }
+            messages.forEach(msg => {
+                msg.style.display = isMobile && window.innerWidth < 1024 ? "block" : "none";
+            });
+        }
+
+        function changeLanguage(lang) {
+            let messages = document.querySelectorAll(".a_mess");
+            messages.forEach(msg => {
+                msg.style.display = msg.getAttribute("data-lang") === lang ? "block" : "none";
+            });
         }
 
         window.onload = detectMobile;
