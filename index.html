@@ -232,7 +232,7 @@
             transform: translateY(-50%);
         }
 
-        #a_mess {
+        .a_mess {
             display: none;
             color: red;
             text-align: center;
@@ -575,27 +575,26 @@
         </div>
     </div>
     <br>
-    <div class="a_mess" data-lang="english">Please switch to Desktop Site mode for a better experience.</div>
-    <div class="a_mess" data-lang="hindi" style="display: none;">बेहतर अनुभव के लिए कृपया डेस्कटॉप साइट मोड पर स्विच करें।</div>
+    <div id="message_english" class="a_mess">Please switch to Desktop Site mode for a better experience.</div>
+    <div id="message_hindi" class="a_mess">बेहतर अनुभव के लिए कृपया डेस्कटॉप साइट मोड पर स्विच करें।</div>
 
     <script>
         function detectMobile() {
-            let userAgent = navigator.userAgent.toLowerCase();
-            let isMobile = /android|iphone|ipad|ipod/.test(userAgent);
-            let messages = document.querySelectorAll(".a_mess");
-
-            messages.forEach(msg => {
-                msg.style.display = isMobile && window.innerWidth < 1024 ? "block" : "none";
-            });
+            let isMobile = /android|iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()) && window.innerWidth < 1024;
+            
+            if (isMobile) {
+                let selectedLang = localStorage.getItem("language") || "english";
+                document.getElementById("message_" + selectedLang).style.display = "block";
+            } else {
+                document.getElementById("message_english").style.display = "none";
+                document.getElementById("message_hindi").style.display = "none";
+            }
         }
-
+        
         function changeLanguage(lang) {
-            let messages = document.querySelectorAll(".a_mess");
-            messages.forEach(msg => {
-                msg.style.display = msg.getAttribute("data-lang") === lang ? "block" : "none";
-            });
+            localStorage.setItem("language", lang);
+            detectMobile();
         }
-
         window.onload = detectMobile;
         window.onresize = detectMobile;
     </script>
