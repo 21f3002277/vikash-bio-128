@@ -248,14 +248,22 @@
             bottom: 0;
             width: 100%;
             background-color: rgb(11, 60, 50);
-            padding: 30px;
+            padding: 20px;
             font-size: 22px;
         }
 
         @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 1.5; }
-            100% { opacity: 1; }
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 1.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
 
         @keyframes rotate {
@@ -310,12 +318,7 @@
             }
 
             footer {
-                padding: 20px;
-            }
-
-            .footer_style {
-                font-size: 1000%;
-                font-weight: bold;
+                font-size: 163px;
             }
 
         }
@@ -393,10 +396,76 @@
             }
 
         }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgb(11, 60, 50);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        .navbar button {
+            background-color: #df9a3a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .navbar button:hover {
+            background-color: #c7852e;
+        }
+
+        body {
+            padding-top: 60px;
+            min-height: 1000px;
+            /* Ensure content is not hidden behind navbar */
+        }
     </style>
 </head>
 
 <body>
+    <div class="navbar">
+        <button onclick="changeLanguage('hindi')">हिन्दी</button>
+        <button onclick="changeLanguage('english')" style="margin-right: 30px;">English</button>
+    </div>
+    <script>
+        function changeLanguage(lang) {
+            let english = document.querySelectorAll("#English");
+            let hindi = document.querySelectorAll("#Hindi");
+
+            if (lang === "hindi") {
+                english.forEach((element) => {
+                    element.style.display = "none";
+                });
+
+                hindi.forEach((element) => {
+                    element.style.display = "block";
+                });
+            } else {
+                english.forEach((element) => {
+                    element.style.display = "block";
+                });
+
+                hindi.forEach((element) => {
+                    element.style.display = "none";
+                });
+            }
+        }
+    </script>
+
+
     <div class="book">
         <!-- Cover with back face as left page -->
         <div class="cover">
@@ -414,16 +483,18 @@
                 <img src="static/B_1.jpg" class="corner-photo corner-bottom-left">
                 <img src="static/B_1.jpg" class="corner-photo corner-bottom-right">
                 <img src="static/p_2.jpg" alt="Profile Photo" class="profile-photo">
-                <i onclick="openDriveFolder()" class="drive-icon" style="color: white;">📂 Photos</i>
-                <div class="details">
+                <i onclick="openDriveFolder()" class="drive-icon" id="English" style="color: white;">📂 Photos</i>
+                <i onclick="openDriveFolder()" class="drive-icon" id="Hindi" style="color: white; display: none;">📂
+                    तस्वीरें</i>
+                <div class="details" id="English">
                     <h2>Personal Details</h2>
                     <p><strong>Name:</strong> Vikash Prasad</p>
                     <p><strong>Date of Birth:</strong> 22nd March 2000</p>
                     <p><strong>Place of Birth:</strong> Ranchi, Jharkhand</p>
                     <p><strong>Religion:</strong> Hindu</p>
-                    <p><strong>Caste:</strong> Teli (Kanojiya Teli)</p>
+                    <p><strong>Caste:</strong> Teli ( Kanojiya Teli )</p>
                     <p><strong>Gotra:</strong> Kashyap</p>
-                    <p><strong>Rashi:</strong> Vrishabha (Taurus)</p>
+                    <p><strong>Rashi:</strong> Vrishabha ( Taurus )</p>
                     <p><strong>Manglik:</strong> No</p>
                     <p><strong>Height:</strong> 6 Feet</p>
                     <p><strong>Weight:</strong> 70 kg</p>
@@ -431,6 +502,23 @@
                     <p><strong>Diet:</strong> Vegetarian</p>
                     <p><strong>Qualification:</strong> BS in Data Science and Applications</p>
                     <p><strong>Occupation:</strong> Businessman</p>
+                </div>
+                <div class="details" id="Hindi" style="display: none;">
+                    <h2>व्यक्तिगत विवरण</h2>
+                    <p><strong>नाम:</strong> विकाश प्रसाद</p>
+                    <p><strong>जन्म तिथि:</strong> 22 मार्च 2000</p>
+                    <p><strong>जन्म स्थान:</strong> रांची, झारखंड</p>
+                    <p><strong>धर्म:</strong> हिन्दू</p>
+                    <p><strong>जाति:</strong> तेली ( कनौजिया तेली )</p>
+                    <p><strong>गोत्र:</strong> कश्यप</p>
+                    <p><strong>राशि:</strong> वृषभ (Taurus)</p>
+                    <p><strong>मांगलिक:</strong> नहीं</p>
+                    <p><strong>कद:</strong> 6 फीट</p>
+                    <p><strong>वजन:</strong> 70 किग्रा</p>
+                    <p><strong>रंग:</strong> गोरा</p>
+                    <p><strong>आहार:</strong> शाकाहारी</p>
+                    <p><strong>शिक्षा:</strong> डेटा विज्ञान और अनुप्रयोग में बी.एस.</p>
+                    <p><strong>पेशा:</strong> व्यवसायी</p>
                 </div>
                 <img src="static/B_3.png" alt="watermark" class="watermark">
                 <img src="static/B_4.png" alt="watermark" class="watermark w3">
@@ -447,7 +535,7 @@
                 <img src="static/B_1.jpg" class="corner-photo corner-bottom-right">
                 <img src="static/G_2.png" alt="Ganesha Photo" class="ganesha-photo">
                 <div class="sh">ॐ गणेशाय नम:</div>
-                <div class="details">
+                <div class="details" id="English">
                     <h2>Family Details</h2>
                     <p><strong>Father's Name: </strong> Surya Narayan Prasad</p>
                     <p><strong>Father's Occupation: </strong> Businessman</p>
@@ -457,12 +545,28 @@
                     <p><strong> Brother's Name (Younger): </strong> Akash Prasad</p>
                     <p><strong> No. of Sister's: </strong> 0</p>
                 </div>
+                <div class="details" id="Hindi" style="display: none;">
+                    <h2>परिवार का विवरण</h2>
+                    <p><strong>पिता का नाम:</strong> सूर्य नारायण प्रसाद</p>
+                    <p><strong>पिता का व्यवसाय:</strong> व्यवसायी</p>
+                    <p><strong>माता का नाम:</strong> मुन्नी देवी</p>
+                    <p><strong>माता का व्यवसाय:</strong> गृहिणी</p>
+                    <p><strong>भाइयों की संख्या:</strong> 1</p>
+                    <p><strong>छोटे भाई का नाम:</strong> आकाश प्रसाद</p>
+                    <p><strong>बहनों की संख्या:</strong> 0</p>
+                </div>
                 <br>
-                <div class="details">
+                <div class="details" id="English">
                     <h2>Contact Details</h2>
                     <p><strong>Contact Person: </strong> Munni Devi</p>
                     <p><strong>Contact Number: </strong> 6205872523</p>
                     <p><strong>Residential Address: </strong> Main Road Silli, Ranchi, Jharkhand</p>
+                </div>
+                <div class="details" id="Hindi" style="display: none;">
+                    <h2>संपर्क विवरण</h2>
+                    <p><strong>संपर्क व्यक्ति:</strong> मुन्नी देवी</p>
+                    <p><strong>संपर्क नंबर:</strong> 6205872523</p>
+                    <p><strong>आवासीय पता:</strong> मेन रोड सिल्ली, रांची, झारखंड</p>
                 </div>
                 <img src="static/B_3.png" alt="watermark" class="watermark">
                 <img src="static/B_4.png" alt="watermark" class="watermark w3">
@@ -494,4 +598,5 @@
         </p>
     </div>
 </footer>
+
 </html>
