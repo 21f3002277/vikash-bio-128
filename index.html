@@ -581,22 +581,26 @@
     <script>
         function detectMobile() {
             let isMobile = /android|iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()) && window.innerWidth < 1024;
-            
+            let selectedLang = localStorage.getItem("language") || "english";
+
+            // Hide both messages first
+            document.getElementById("message_english")?.style.display = "none";
+            document.getElementById("message_hindi")?.style.display = "none";
+
+            // Show the appropriate message if on mobile
             if (isMobile) {
-                let selectedLang = localStorage.getItem("language") || "english";
-                document.getElementById("message_" + selectedLang).style.display = "block";
-            } else {
-                document.getElementById("message_english").style.display = "none";
-                document.getElementById("message_hindi").style.display = "none";
+                document.getElementById("message_" + selectedLang)?.style.display = "block";
             }
         }
-        
+
         function changeLanguage(lang) {
             localStorage.setItem("language", lang);
-            detectMobile();
+            detectMobile(); // Update UI immediately
         }
-        window.onload = detectMobile;
-        window.onresize = detectMobile;
+
+        // Run on load and window resize
+        window.addEventListener("load", detectMobile);
+        window.addEventListener("resize", detectMobile);
     </script>
 </body>
 <footer>
