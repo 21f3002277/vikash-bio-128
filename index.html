@@ -581,22 +581,24 @@
     </div>
 
     <script>
-        function isMobileDevice() {
-            return ('ontouchstart' in window || navigator.maxTouchPoints > 0) && window.innerWidth < 1024;
-        }
-
         function detectMobile() {
-            let isMobile = isMobileDevice();
+            let userAgent = navigator.userAgent.toLowerCase();
+            let isMobile = /android|iphone|ipad|ipod/.test(userAgent);
             let selectedLang = localStorage.getItem("selectedLang") || "hindi";
 
+            // Show message only on mobile and ensure the correct language is applied
             document.querySelectorAll(".a_mess").forEach(msg => {
-                msg.style.display = (isMobile && msg.getAttribute("data-lang") === selectedLang) ? "block" : "none";
+                if (isMobile && window.innerWidth < 1024 && msg.getAttribute("data-lang") === selectedLang) {
+                    msg.style.display = "block";
+                } else {
+                    msg.style.display = "none";
+                }
             });
         }
 
         function changeLanguage(lang) {
             localStorage.setItem("selectedLang", lang);
-            detectMobile(); // Re-evaluate display based on language change
+            detectMobile(); // Re-run detection to apply the correct message
         }
 
         window.onload = detectMobile;
