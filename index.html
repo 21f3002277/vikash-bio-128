@@ -440,28 +440,48 @@
         <button onclick="changeLanguage('english')" style="margin-right: 30px;">English</button>
     </div>
     <script>
-        function detectMobile() {
-            let userAgent = navigator.userAgent.toLowerCase();
-            let isMobile = /android|iphone|ipad|ipod/.test(userAgent);
-            let selectedLang = localStorage.getItem("selectedLang") || "hindi";
-
-            // Show message only on mobile and ensure the correct language is applied
-            document.querySelectorAll(".a_mess").forEach(msg => {
-                if (isMobile && window.innerWidth < 1024 && msg.getAttribute("data-lang") === selectedLang) {
-                    msg.style.display = "block";
-                } else {
-                    msg.style.display = "none";
-                }
-            });
+        // Initialize language and mobile detection
+        function initializePage() {
+            const savedLang = localStorage.getItem("selectedLang") || "english";
+            changeLanguage(savedLang);
+            detectMobile();
         }
 
         function changeLanguage(lang) {
             localStorage.setItem("selectedLang", lang);
-            detectMobile(); // Re-run detection to apply the correct message
+
+            // Toggle language content
+            document.querySelectorAll('.english, .hindi').forEach(element => {
+                element.style.display = 'none';
+            });
+            document.querySelectorAll(`.${lang}`).forEach(element => {
+                element.style.display = 'block';
+            });
+
+            // Update mobile message
+            detectMobile();
         }
 
-        window.onload = detectMobile;
-        window.onresize = detectMobile;
+        function detectMobile() {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const currentLang = localStorage.getItem("selectedLang") || "english";
+
+            document.querySelectorAll('.a_mess').forEach(element => {
+                element.style.display = (isMobile && element.dataset.lang === currentLang)
+                    ? 'block'
+                    : 'none';
+            });
+        }
+
+        // Add missing drive folder function
+        function openDriveFolder() {
+            // Replace with actual Google Drive link
+            window.open('https://drive.google.com/drive/folder-id', '_blank');
+        }
+
+        // Event listeners
+        window.addEventListener('load', initializePage);
+        window.addEventListener('resize', detectMobile);
     </script>
 
 
@@ -485,7 +505,7 @@
                 <i onclick="openDriveFolder()" class="drive-icon" data-lang="English" style="color: white;">📂 Photos</i>
                 <i onclick="openDriveFolder()" class="drive-icon" data-lang="Hindi" style="color: white; display: none;">📂
                     तस्वीरें</i>
-                <div class="details" data-lang="english">
+                <div class="details english">
                     <h2>Personal Details</h2>
                     <p><strong>Name:</strong> Vikash Prasad</p>
                     <p><strong>Date of Birth:</strong> 22nd March 2000</p>
@@ -502,7 +522,7 @@
                     <p><strong>Qualification:</strong> BS in Data Science and Applications</p>
                     <p><strong>Occupation:</strong> Businessman</p>
                 </div>
-                <div class="details" data-lang="hindi" style="display: none;">
+                <div class="details hindi"  style="display: none;">
                     <h2>व्यक्तिगत विवरण</h2>
                     <p><strong>नाम:</strong> विकाश प्रसाद</p>
                     <p><strong>जन्म तिथि:</strong> 22 मार्च 2000</p>
@@ -534,7 +554,7 @@
                 <img src="static/B_1.jpg" class="corner-photo corner-bottom-right">
                 <img src="static/G_2.png" alt="Ganesha Photo" class="ganesha-photo">
                 <div class="sh">ॐ गणेशाय नम:</div>
-                <div class="details" data-lang="english">
+                <div class="details english">
                     <h2>Family Details</h2>
                     <p><strong>Father's Name: </strong> Surya Narayan Prasad</p>
                     <p><strong>Father's Occupation: </strong> Businessman</p>
@@ -544,7 +564,7 @@
                     <p><strong> Brother's Name (Younger): </strong> Akash Prasad</p>
                     <p><strong> No. of Sister's: </strong> 0</p>
                 </div>
-                <div class="details" data-lang="hindi" style="display: none;">
+                <div class="details hindi" style="display: none;">
                     <h2>परिवार का विवरण</h2>
                     <p><strong>पिता का नाम:</strong> सूर्य नारायण प्रसाद</p>
                     <p><strong>पिता का व्यवसाय:</strong> व्यवसायी</p>
@@ -555,13 +575,13 @@
                     <p><strong>बहनों की संख्या:</strong> 0</p>
                 </div>
                 <br>
-                <div class="details" data-lang="english">
+                <div class="details english">
                     <h2>Contact Details</h2>
                     <p><strong>Contact Person: </strong> Munni Devi</p>
                     <p><strong>Contact Number: </strong> 6205872523</p>
                     <p><strong>Residential Address: </strong> Main Road Silli, Ranchi, Jharkhand</p>
                 </div>
-                <div class="details" data-lang="hindi" style="display: none;">
+                <div class="details hindi" style="display: none;">
                     <h2>संपर्क विवरण</h2>
                     <p><strong>संपर्क व्यक्ति:</strong> मुन्नी देवी</p>
                     <p><strong>संपर्क नंबर:</strong> 6205872523</p>
