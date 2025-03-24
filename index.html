@@ -580,27 +580,36 @@
 
     <script>
         function detectMobile() {
-            let isMobile = /android|iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()) && window.innerWidth < 1024;
-            let selectedLang = localStorage.getItem("language") || "english";
+            let userAgent = navigator.userAgent.toLowerCase();
+            let isMobile = /android|iphone|ipad|ipod/.test(userAgent);
+            let messages = document.querySelectorAll(".a_mess");
 
-            // Hide both messages first
-            document.getElementById("message_english")?.style.display = "none";
-            document.getElementById("message_hindi")?.style.display = "none";
+            messages.forEach(msg => {
+                msg.style.display = (isMobile && window.innerWidth < 1024) ? "block" : "none";
+            });
 
-            // Show the appropriate message if on mobile
-            if (isMobile) {
-                document.getElementById("message_" + selectedLang)?.style.display = "block";
-            }
+            // Ensure the correct language is applied
+            changeLanguage(localStorage.getItem("selectedLang") || "english");
         }
 
         function changeLanguage(lang) {
-            localStorage.setItem("language", lang);
-            detectMobile(); // Update UI immediately
+            localStorage.setItem("selectedLang", lang); // Store user preference
+            let messages = document.querySelectorAll(".a_mess");
+
+            messages.forEach(msg => {
+                if (msg.getAttribute("data-lang") === lang) {
+                    msg.style.display = "block"; // Show selected language message
+                } else {
+                    msg.style.display = "none"; // Hide other messages
+                }
+            });
         }
 
-        // Run on load and window resize
-        window.addEventListener("load", detectMobile);
-        window.addEventListener("resize", detectMobile);
+        window.onload = function () {
+            detectMobile();
+        };
+
+        window.onresize = detectMobile;
     </script>
 </body>
 <footer>
