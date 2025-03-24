@@ -440,10 +440,9 @@
         <button onclick="changeLanguage('english')" style="margin-right: 30px;">English</button>
     </div>
     <script>
-        // Initialize language and mobile detection
         function initializePage() {
-            const savedLang = localStorage.getItem("selectedLang") || "english";
-            changeLanguage(savedLang);
+            // Always set to English on reload
+            changeLanguage("english");
             detectMobile();
         }
 
@@ -464,16 +463,13 @@
 
         function detectMobile() {
             const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            const currentLang = localStorage.getItem("selectedLang") || "english";
 
+            // Always use English for mobile messages after reload
             document.querySelectorAll('.a_mess').forEach(element => {
-                element.style.display = (isMobile && element.dataset.lang === currentLang)
-                    ? 'block'
-                    : 'none';
+                element.style.display = (isMobile && element.dataset.lang === "english") ? 'block' : 'none';
             });
         }
 
-        // Add missing drive folder function
         function openDriveFolder() {
             // Replace with actual Google Drive link
             window.open('https://drive.google.com/drive/folder-id', '_blank');
