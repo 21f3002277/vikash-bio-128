@@ -433,6 +433,57 @@
             padding-top: 5%;
             /* Ensure content is not hidden behind navbar */
         }
+
+        .photo-indicator {
+            position: absolute;
+            top: 22%;
+            /* tweak as needed to line up with your icon */
+            right: -20%;
+            /* tweak to sit next to the 📂 icon */
+            display: flex;
+            align-items: center;
+            background: rgba(223, 154, 58, 0.9);
+            color: #280101;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            animation: float 2s ease-in-out infinite;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .photo-indicator .hand {
+            margin-right: 6px;
+            font-size: 1.2rem;
+            animation: wiggle 0.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes wiggle {
+            from {
+                transform: rotate(-15deg);
+            }
+
+            to {
+                transform: rotate(15deg);
+            }
+        }
+
+        .photo-indicator:hover {
+            animation-play-state: paused;
+        }
     </style>
 </head>
 
@@ -447,11 +498,16 @@
             const savedLang = "english";
             changeLanguage(savedLang);
             detectMobile();
+
+            // auto-hide the indicator after 10 seconds (optional)
+            setTimeout(() => {
+                document.querySelectorAll('.photo-indicator').forEach(el => el.style.display = 'none');
+            }, 10000);
         }
 
         function changeLanguage(lang) {
             localStorage.setItem("selectedLang", lang);
-            
+
             // Toggle language content
             document.querySelectorAll('.english, .hindi').forEach(element => {
                 element.style.display = 'none';
@@ -504,8 +560,17 @@
                 <img src="static/B_1.jpg" class="corner-photo corner-bottom-right">
                 <img src="static/p_2.jpg" alt="Profile Photo" class="profile-photo">
                 <i onclick="openDriveFolder()" class="drive-icon english" style="color: white;">📂 Photos</i>
+                <div onclick="openDriveFolder()" class="photo-indicator english">
+                    <span class="hand">👈</span>
+                    <span class="msg">Click here,</span><br><span> get more photos</span>
+                </div>
+                <!-- Hindi Drive icon + indicator -->
                 <i onclick="openDriveFolder()" class="drive-icon hindi" style="color: white; display: none;">📂
                     तस्वीरें</i>
+                <div onclick="openDriveFolder()" class="photo-indicator hindi" style="display: none;">
+                    <span class="hand">👈</span>
+                    <span class="msg">यहाँ क्लिक करें</span><br><span> अधिक तस्वीरें प्राप्त करें</span>
+                </div>
                 <div class="details english">
                     <h2>Personal Details</h2>
                     <p><strong>Name:</strong> Vikash Prasad</p>
@@ -523,7 +588,7 @@
                     <p><strong>Qualification:</strong> BS in Data Science and Applications</p>
                     <p><strong>Occupation:</strong> Businessman</p>
                 </div>
-                <div class="details hindi"  style="display: none;">
+                <div class="details hindi" style="display: none;">
                     <h2>व्यक्तिगत विवरण</h2>
                     <p><strong>नाम:</strong> विकाश प्रसाद</p>
                     <p><strong>जन्म तिथि:</strong> 22 मार्च 2000</p>
@@ -601,7 +666,7 @@
         <div class="a_mess" data-lang="hindi">बेहतर अनुभव के लिए कृपया डेस्कटॉप साइट मोड पर स्विच करें।</div>
     </div>
 
-    
+
 </body>
 <footer>
     <div class="footer_style" style="text-align: center; color: white;">
